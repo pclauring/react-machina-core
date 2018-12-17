@@ -16,10 +16,11 @@ class Form extends React.Component {
 
 	handleSubmit = (event) => {
   	event.preventDefault();
-    console.log("Event: Submit ", this.state.userName);
+    //console.log("Event: Submit ", this.state.userName);
     axios.get(`https://api.github.com/users/${this.state.userName}`)
     .then(resp => {
-    console.log(resp);
+    //console.log(resp);
+    this.props.onSubmit(resp.data);
     });
   };
   
@@ -44,17 +45,18 @@ const CardList = (props) => {
 };
 
 class App extends React.Component {
-	state = { cards:  [{
-					avatar_url: "https://avatars0.githubusercontent.com/u/29286105?v=4",
-    			name: "Pierce Lauring",
-          company: "United Wholesale Mortgage"
-          }
-				]
-	};
+	state = { cards:  [] };
+  
+  addNewCard = (cardInfo) => {
+  	this.setState(prevState => ({
+    	cards: prevState.cards.concat(cardInfo)
+    }));
+  };
+  
 	render () {
   	return (
     <div>
-      <Form />
+      <Form onSubmit={this.addNewCard}/>
       <CardList cards={this.state.cards}/>
     </div>
     )};
