@@ -7,20 +7,17 @@
     margin: 0.5em;
     text-align: center;
     background-color: #ccc;
-    width: 40px;
+    width: 24px;
     border-radius: 50%;
-    font-size: 25px;
     cursor: pointer;
   }
   
   .selected {
     background-color: #ccc;
-    color: #ddd;
     cursor: not-allowed;
   }
   
   .used {
     background-color: #ada;
-    color: #9b9;
     cursor: not-allowed;
   }
